@@ -1,0 +1,22 @@
+@import '~@csstools/normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+.app {
+  background-color: #f3f7fa;
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+
+  &-wrapper {
+    width: 80%;
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-areas:
+      'logo logo'
+      'filter sort'
+      'filter ticket-list';
+    grid-template-rows: 1fr 50px 8fr;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 20px;
+  }
+}

@@ -1,0 +1,67 @@
+.ticket-item {
+  background-color: #fff;
+  height: 190px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+
+  display: grid;
+  grid-template-areas:
+    'price logo logo'
+    'route length stops'
+    'return-route return-length return-stops';
+  grid-template-rows: 5fr 3.5fr 3.5fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+
+  &--price {
+    grid-area: price;
+    align-self: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: rgba(33, 150, 243, 1);
+  }
+
+  &--logo {
+    grid-area: logo;
+    justify-self: end;
+    align-self: center;
+  }
+
+  &--route {
+    grid-area: route;
+
+    &-title {
+      color: rgba(160, 176, 185, 1);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 18px;
+    }
+    &-description {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 21px;
+    }
+  }
+
+  &--length {
+    grid-area: length;
+  }
+
+  &--stops {
+    grid-area: stops;
+  }
+
+  &--return-route {
+    grid-area: return-route;
+  }
+
+  &--return-length {
+    grid-area: return-length;
+  }
+
+  &--return-stops {
+    grid-area: return-stops;
+  }
+}

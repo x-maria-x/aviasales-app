@@ -1,9 +1,10 @@
 {
-  "name": "todo",
+  "name": "aviasales-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@csstools/normalize.css": "^12.0.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -59,5 +60,18 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.1.0",
     "prettier": "3.0.3"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-recommended",
+    "rules": {
+      "at-rule-no-unknown": [
+        true,
+        {
+          "ignoreAtRules": [
+            "import-normalise"
+          ]
+        }
+      ]
+    }
   }
 }
