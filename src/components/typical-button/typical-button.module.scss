@@ -1,3 +1,12 @@
+@function calcFontSize($f-min, $f-max, $v-min, $v-max) {
+  $k: calc(($f-max - $f-min) / ($v-max - $v-min));
+  $b: $f-min - $k * $v-min;
+
+  $b: $b * 1px;
+
+  @return calc(#{$k} * 100vw + #{$b});
+}
+
 .typical-button {
   background-color: #2196f3;
   width: 100%;
@@ -7,4 +16,17 @@
   color: #fff;
   font-family: inherit;
   font-weight: 600;
+  font-size: calcFontSize(12, 14, 300, 1280);
+
+  &:hover {
+    transition: all 0.2s;
+    box-shadow:
+      0 7px 14px rgb(65 132 144 / 10%),
+      0 3px 6px rgb(0 0 0 / 8%);
+  }
+
+  &:active {
+    box-shadow: none;
+    transform: scale(0.99);
+  }
 }

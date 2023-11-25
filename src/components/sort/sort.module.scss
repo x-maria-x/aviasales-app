@@ -1,10 +1,22 @@
+@function calcFontSize($f-min, $f-max, $v-min, $v-max) {
+  $k: calc(($f-max - $f-min) / ($v-max - $v-min));
+  $b: $f-min - $k * $v-min;
+
+  $b: $b * 1px;
+
+  @return calc(#{$k} * 100vw + #{$b});
+}
+
 .sort {
   background-color: #fff;
   border-radius: 10px;
   border: 1px solid #dfe5ec;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   overflow: hidden;
+  height: 48px;
+  font-size: calcFontSize(12, 16, 300, 1280);
 
   &-item {
     display: inline-block;
@@ -17,14 +29,13 @@
   & label {
     display: inline-block;
     cursor: pointer;
-    padding: 0px 15px;
 
     user-select: none;
     flex-grow: 1;
     text-align: center;
     font-weight: 600;
     color: rgba(74, 74, 74, 1);
-    padding: 15px 0;
+    padding: 20px 0;
   }
   & label:first-child {
     border-right: 1px solid #dfe5ec;

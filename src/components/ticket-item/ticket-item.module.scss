@@ -1,3 +1,12 @@
+@function calcFontSize($f-min, $f-max, $v-min, $v-max) {
+  $k: calc(($f-max - $f-min) / ($v-max - $v-min));
+  $b: $f-min - $k * $v-min;
+
+  $b: $b * 1px;
+
+  @return calc(#{$k} * 100vw + #{$b});
+}
+
 .ticket-item {
   background-color: #fff;
   height: 190px;
@@ -8,17 +17,21 @@
 
   display: grid;
   grid-template-areas:
-    'price logo logo'
+    'price price logo'
     'route length stops'
     'return-route return-length return-stops';
-  grid-template-rows: 5fr 3.5fr 3.5fr;
+  grid-template-rows: 3fr 4fr 4fr;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
+
+  @media (max-width: 768px) {
+    grid-gap: 5px;
+  }
 
   &--price {
     grid-area: price;
     align-self: center;
-    font-size: 24px;
+    font-size: calcFontSize(16, 24, 300, 1280);
     font-weight: 600;
     color: rgba(33, 150, 243, 1);
   }
@@ -27,6 +40,16 @@
     grid-area: logo;
     justify-self: end;
     align-self: center;
+    position: relative;
+
+    & img {
+      @media (max-width: 768px) {
+        position: absolute;
+        top: -15px;
+        left: -100px;
+        width: 100px;
+      }
+    }
   }
 
   &--route {
@@ -34,12 +57,12 @@
 
     &-title {
       color: rgba(160, 176, 185, 1);
-      font-size: 12px;
+      font-size: calcFontSize(10, 12, 300, 1280);
       font-weight: 600;
       line-height: 18px;
     }
     &-description {
-      font-size: 14px;
+      font-size: calcFontSize(12, 14, 300, 1280);
       font-weight: 600;
       line-height: 21px;
     }

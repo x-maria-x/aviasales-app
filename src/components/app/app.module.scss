@@ -18,5 +18,18 @@
     grid-template-rows: 1fr 50px 8fr;
     grid-template-columns: 1fr 2fr;
     grid-gap: 20px;
+
+    @media (max-width: 768px) {
+      width: 90%;
+
+      grid-template-areas:
+        'logo '
+        'filter'
+        ' sort'
+        ' ticket-list';
+      grid-template-rows: 0.2fr 1fr 0.1fr auto;
+      grid-template-columns: 1fr;
+      grid-gap: 10px;
+    }
   }
 }
