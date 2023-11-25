@@ -5,7 +5,7 @@ import style from './sort.module.scss'
 function Sort() {
   return (
     <div className={style.sort}>
-      <input className={style['sort-item']} type="radio" name="sort" id="cheap" value="cheap" checked />
+      <input className={style['sort-item']} type="radio" name="sort" id="cheap" value="cheap" defaultChecked />
       <label htmlFor="cheap">
         <span>САМЫЙ ДЕШЕВЫЙ</span>
       </label>

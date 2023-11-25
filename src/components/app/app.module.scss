@@ -1,6 +1,10 @@
 @import '~@csstools/normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 .app {
   background-color: #f3f7fa;
   font-family: 'Open Sans', sans-serif;
