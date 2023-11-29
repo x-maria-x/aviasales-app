@@ -1,11 +1,18 @@
 import React from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { updateSort } from '../../actions/actionCreators'
 
 import style from './sort.module.scss'
 
-function Sort(props) {
+export default function Sort() {
+  const dispatch = useDispatch()
+
+  const handleChanhe = (arg) => {
+    dispatch(updateSort(arg))
+  }
+
   return (
     <div className={style.sort}>
       <input
@@ -15,7 +22,7 @@ function Sort(props) {
         id="cheap"
         value="cheap"
         defaultChecked
-        onClick={() => props.updateSort('cheap')}
+        onClick={() => handleChanhe('cheap')}
       />
       <label htmlFor="cheap">
         <span>САМЫЙ ДЕШЕВЫЙ</span>
@@ -27,7 +34,7 @@ function Sort(props) {
         name="sort"
         id="fast"
         value="fast"
-        onClick={() => props.updateSort('fast')}
+        onClick={() => handleChanhe('fast')}
       />
       <label htmlFor="fast">
         <span>САМЫЙ БЫСТРЫЙ</span>
@@ -35,15 +42,3 @@ function Sort(props) {
     </div>
   )
 }
-
-function mapStatetoProps(state) {
-  return { ...state, sort: state.sort }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    updateSort: (arg) => dispatch(updateSort(arg)),
-  }
-}
-
-export default connect(mapStatetoProps, mapDispatchToProps)(Sort)

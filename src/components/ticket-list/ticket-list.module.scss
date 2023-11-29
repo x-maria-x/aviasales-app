@@ -1,3 +1,19 @@
 .ticket-list {
   grid-area: ticket-list;
 }
+
+.inform-card {
+  background-color: #fff;
+  height: 230px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+
+  & span {
+    margin: auto;
+    font-weight: 600;
+    color: #2196f3;
+  }
+}
