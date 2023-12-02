@@ -21,6 +21,7 @@ export default function Sort() {
         name="sort"
         id="cheap"
         value="cheap"
+        tabIndex={0}
         defaultChecked
         onClick={() => handleChanhe('cheap')}
       />
@@ -34,6 +35,7 @@ export default function Sort() {
         name="sort"
         id="fast"
         value="fast"
+        tabIndex={0}
         onClick={() => handleChanhe('fast')}
       />
       <label htmlFor="fast">
