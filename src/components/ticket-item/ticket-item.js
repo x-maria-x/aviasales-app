@@ -26,15 +26,13 @@ function TicketItem({ price, carrier, segments }) {
     return `${hours}ч ${minutes}м`
   }
 
-  const originParseStartTime = new Date(origin.date).getTime()
-  const originStartTime = format(originParseStartTime, 'HH:mm')
-  const originParseEndTime = add(originParseStartTime, { minutes: origin.duration })
-  const originEndTime = format(originParseEndTime, 'HH:mm')
-
-  const destinationParseStartTime = new Date(destination.date).getTime()
-  const destinationStartTime = format(destinationParseStartTime, 'HH:mm')
-  const destinationParseEndTime = add(destinationParseStartTime, { minutes: destination.duration })
-  const destinationEndTime = format(destinationParseEndTime, 'HH:mm')
+  const formatStartEndTime = (startTime, duration) => {
+    const parseStartTime = new Date(startTime).getTime()
+    const formatStartTime = format(parseStartTime, 'HH:mm')
+    const parseEndTime = add(parseStartTime, { minutes: duration })
+    const formatEndTime = format(parseEndTime, 'HH:mm')
+    return `${formatStartTime} – ${formatEndTime}`
+  }
 
   return (
     <div className={style['ticket-item']}>
@@ -47,7 +45,7 @@ function TicketItem({ price, carrier, segments }) {
           {origin.origin} – {origin.destination}
         </div>
         <div className={style['ticket-item--route-description']}>
-          {originStartTime} – {originEndTime}
+          {formatStartEndTime(origin.date, origin.duration)}
         </div>
       </div>
       <div className={style['ticket-item--length']}>
@@ -63,7 +61,7 @@ function TicketItem({ price, carrier, segments }) {
           {destination.origin} – {destination.destination}
         </div>
         <div className={style['ticket-item--route-description']}>
-          {destinationStartTime} – {destinationEndTime}
+          {formatStartEndTime(destination.date, destination.duration)}
         </div>
       </div>
       <div className={style['ticket-item--return-length']}>

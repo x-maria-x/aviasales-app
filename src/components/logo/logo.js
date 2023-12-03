@@ -8,9 +8,9 @@ import style from './logo.module.scss'
 function Logo() {
   const { stopFetching } = useSelector((state) => state.fetchData)
 
-  const styleLoad = stopFetching ? null : style.spinner
+  const styleClass = stopFetching ? `${style.logo}` : `${style.logo} ${style.spinner}`
 
-  return <img src={logo} alt="logo" className={`${style.logo} ${styleLoad}`} />
+  return <img src={logo} alt="logo" className={styleClass} />
 }
 
 export default Logo

@@ -31,25 +31,29 @@ function App() {
   }, [filter, sort])
 
   const filterAndSortTickets = (ticketsList) => {
-    const filterZeroTickets = ticketsList.filter((ticket) => ticket.segments[0].stops.length === 0)
-    const filterOneTickets = ticketsList.filter((ticket) => ticket.segments[0].stops.length === 1)
-    const filterTwoTickets = ticketsList.filter((ticket) => ticket.segments[0].stops.length === 2)
-    const filterThreeTickets = ticketsList.filter((ticket) => ticket.segments[0].stops.length === 3)
-
-    let filtredTickets = []
-    if (filter.zero) filtredTickets = [...filtredTickets, ...filterZeroTickets]
-    if (filter.one) filtredTickets = [...filtredTickets, ...filterOneTickets]
-    if (filter.two) filtredTickets = [...filtredTickets, ...filterTwoTickets]
-    if (filter.three) filtredTickets = [...filtredTickets, ...filterThreeTickets]
-    if (filter.all) filtredTickets = ticketsList
+    const filteredTickets = ticketsList.reduce((acc, ticket) => {
+      if (filter.all) {
+        acc.push(ticket)
+      } else if (filter.zero && ticket.segments[0].stops.length === 0) {
+        acc.push(ticket)
+      } else if (filter.one && ticket.segments[0].stops.length === 1) {
+        acc.push(ticket)
+      } else if (filter.two && ticket.segments[0].stops.length === 2) {
+        acc.push(ticket)
+      } else if (filter.three && ticket.segments[0].stops.length === 3) {
+        acc.push(ticket)
+      }
+      return acc
+    }, [])
 
     if (sort === 'cheap') {
-      return [...filtredTickets].sort((a, b) => a.price - b.price)
+      return [...filteredTickets].sort((a, b) => a.price - b.price)
     }
     if (sort === 'fast') {
-      return [...filtredTickets].sort((a, b) => a.segments[0].duration - b.segments[0].duration)
+      return [...filteredTickets].sort((a, b) => a.segments[0].duration - b.segments[0].duration)
     }
-    return filtredTickets
+
+    return filteredTickets
   }
 
   const ticketsData = filterAndSortTickets(tickets).slice(0, limit)

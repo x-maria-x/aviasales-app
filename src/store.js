@@ -1,11 +1,9 @@
-import { createStore, compose, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
+import { configureStore } from '@reduxjs/toolkit'
 
-import { rootReducer } from './reducers/rootReducer'
+import { filterReducer } from './reducers/filterReducer'
+import { sortReducer } from './reducers/sortReducer'
+import { fetchDataReducer } from './reducers/fetchDataReducer'
 
-/* eslint-disable no-underscore-dangle */
-export const store = createStore(
-  rootReducer,
-  compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-)
-/* eslint-enable */
+export const store = configureStore({
+  reducer: { filters: filterReducer, sort: sortReducer, fetchData: fetchDataReducer },
+})
